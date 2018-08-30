@@ -1,4 +1,4 @@
-package chapter3;
+package chapter4;
 
 public class P165_StackWithMin {
 }

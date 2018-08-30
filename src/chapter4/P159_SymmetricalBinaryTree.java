@@ -1,4 +1,4 @@
-package chapter3;
+package chapter4;
 
 public class P159_SymmetricalBinaryTree {
 }
