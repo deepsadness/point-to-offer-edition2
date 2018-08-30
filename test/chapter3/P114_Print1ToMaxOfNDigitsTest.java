@@ -58,9 +58,8 @@ public class P114_Print1ToMaxOfNDigitsTest {
 
     @Test
     public void printMaxOfNDigits2() {
-//        P114_Print1ToMaxOfNDigits.printMaxOfNDigits2(1);
-        String s = P114_Print1ToMaxOfNDigits.printMaxOfNDigits2(3);
-        System.out.println(s);
+        Assert.assertEquals(buildMaxString(9), P114_Print1ToMaxOfNDigits.printMaxOfNDigits2(1));
+        Assert.assertEquals(buildMaxString(99), P114_Print1ToMaxOfNDigits.printMaxOfNDigits2(2));
     }
 
 }

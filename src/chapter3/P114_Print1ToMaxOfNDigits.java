@@ -146,9 +146,34 @@ public class P114_Print1ToMaxOfNDigits {
 
 
     public static String printMaxOfNDigits2(int digits) {
-        return "";
+        char[] buf = new char[digits];
+        Arrays.fill(buf, '0');
+        StringBuilder stringBuilder = new StringBuilder();
+        getChar(0, true, 0, digits, buf, stringBuilder);
+        return stringBuilder.toString();
     }
 
+    private static void getChar(int prefixOffset, boolean prefixZero, int curIndex, int digits, char[] buf, StringBuilder stringBuilder) {
 
-
+        if (curIndex < digits) {
+            for (int i = 0; i <= 9; i++) {
+                int tempValue = '0' + i;
+                buf[curIndex] = (char) tempValue;
+                boolean zero = prefixZero && tempValue == '0';
+                if (zero) {
+                    prefixOffset++;
+                } else {
+                    if (prefixOffset == curIndex + 1) {
+                        prefixOffset--;
+                    }
+                }
+                getChar(prefixOffset, zero, curIndex + 1, digits, buf, stringBuilder);
+            }
+        } else {
+            if (prefixOffset != digits) {
+                stringBuilder.append(buf, prefixOffset, buf.length - prefixOffset).append(",");
+            }
+        }
+    }
 }
+
