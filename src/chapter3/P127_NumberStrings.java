@@ -14,6 +14,11 @@ public class P127_NumberStrings {
      * 1.第一位可能是正负数。后面都没可能
      * 2.只能有一个小数点。小数点可以为第一位.可以为最后一位
      * 3.e E 不能做第一位。必须在小数后面。后面只能是整数
+     * <p>
+     * 将函数分成三段考虑
+     * 1. 一段是在小数点之前。
+     * 2. 小数点之后
+     * 3.e之后
      */
     public static boolean isNumeric(String str) {
         if (str == null || str.length() == 0) {
@@ -35,50 +40,40 @@ public class P127_NumberStrings {
         if (strIndex == prefixNumberIndex) {
             //前面没有数字的情况，可以有小数点。不能有e
             char c = str.charAt(strIndex);
-            if (c == '.') {
-                strIndex++;
-                //小数点后面也不能添加。也能作为结尾
-                if (strIndex != length) {
-                    int afterDotNumberIndex = scanInteger(str, strIndex);
-                    if (afterDotNumberIndex != strIndex) { //有数字，可以接着，看有没有e
-                        if (afterDotNumberIndex >= length) {    //没有了。ok
-                            return true;
-                        } else {
-                            //还有。那下一位只能是e
-                            strIndex = afterDotNumberIndex;
-                            char next = str.charAt(strIndex);
-                            return (next == 'e' || next == 'E') && afterE(str, length, strIndex);
-                        }
-                    }
-                }
-            }
+            return c == '.' && afterDot(str, length, strIndex, false);
         } else { //前面有数字
-            if (prefixNumberIndex < length ) {
+            if (prefixNumberIndex < length) {
                 //前面有数字的情况，可以有小数点。不能有
                 strIndex = prefixNumberIndex;
                 char c = str.charAt(strIndex);
                 if (c == '.') {
-                    strIndex++;
-                    if (strIndex != length) {
-                        int afterDotNumberIndex = scanInteger(str, strIndex);
-                        if (afterDotNumberIndex != strIndex) { //有数字，可以接着，看有没有e
-                            if (afterDotNumberIndex >= length) {    //没有了。ok
-                                return true;
-                            } else {
-                                //还有。那下一位只能是e
-                                strIndex = afterDotNumberIndex;
-                                char next = str.charAt(strIndex);
-                                return (next == 'e' || next == 'E') && afterE(str, length, strIndex);
-                            }
-                        }
-                    }
+                    return afterDot(str, length, strIndex, true);
                 } else {  //开始指数部分
                     return (c == 'e' || c == 'E') && afterE(str, length, strIndex);
                 }
+            } else {
+                return true;
             }
-            return true;
         }
-        return false;
+    }
+
+    //如果小数点前面没有数字，则 defaultValue为false ,否则为true
+    private static boolean afterDot(String str, int length, int strIndex, boolean defaultValue) {
+        strIndex++;
+        //小数点后面也不能添加。也能作为结尾
+        if (strIndex != length) {
+            int afterDotNumberIndex = scanInteger(str, strIndex);
+            if (afterDotNumberIndex != strIndex) { //有数字，可以接着，看有没有e
+                if (afterDotNumberIndex >= length) {    //没有了。ok
+                    return true;
+                } else { //开始指数部分
+                    strIndex = afterDotNumberIndex;
+                    char next = str.charAt(strIndex);
+                    return (next == 'e' || next == 'E') && afterE(str, length, strIndex);
+                }
+            }
+        }
+        return defaultValue;
     }
 
     private static boolean afterE(String str, int length, int strIndex) {
@@ -104,4 +99,5 @@ public class P127_NumberStrings {
         }
         return index;
     }
+
 }
