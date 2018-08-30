@@ -1,6 +1,6 @@
 package chapter2;
 
-import chapter2.model.ParentTreeNode;
+import model.ParentTreeNode;
 import org.junit.Assert;
 import org.junit.Test;
 

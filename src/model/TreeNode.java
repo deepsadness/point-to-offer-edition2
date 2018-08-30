@@ -1,4 +1,4 @@
-package chapter2.model;
+package model;
 
 import java.util.Objects;
 

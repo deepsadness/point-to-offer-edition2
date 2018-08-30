@@ -1,6 +1,6 @@
 package chapter2;
 
-import chapter2.model.TreeNode;
+import model.TreeNode;
 
 /**
  * 重建二叉树

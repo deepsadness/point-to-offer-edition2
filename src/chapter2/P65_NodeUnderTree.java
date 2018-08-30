@@ -1,6 +1,6 @@
 package chapter2;
 
-import chapter2.model.ParentTreeNode;
+import model.ParentTreeNode;
 
 /**
  * 二叉树的下一个节点

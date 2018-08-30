@@ -1,6 +1,6 @@
 package chapter2;
 
-import chapter2.model.TreeNode;
+import model.TreeNode;
 import org.junit.Test;
 
 /**
