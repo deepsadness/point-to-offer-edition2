@@ -6,6 +6,8 @@ import model.ListNode;
  * 链表中倒数第k个节点
  * <p>
  * 求链表中倒数第k个节点。链表的尾节点定义为倒数第1个节点。
+ *
+ * 这里要注意非法的情况。
  */
 public class P134_KthNodeFromEnd {
 

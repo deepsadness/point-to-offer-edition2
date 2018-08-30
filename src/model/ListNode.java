@@ -2,6 +2,8 @@ package model;
 
 import com.sun.istack.internal.Nullable;
 
+import java.util.Objects;
+
 public class ListNode {
     @Nullable
     public ListNode next;
@@ -26,8 +28,20 @@ public class ListNode {
     @Override
     public String toString() {
         return "ListNode{" +
-                "next=" + (next == null ? "{null}" : next.toString()) +
                 ", value=" + value +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ListNode node = (ListNode) o;
+        return value == node.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
