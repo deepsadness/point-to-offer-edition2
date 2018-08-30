@@ -15,6 +15,7 @@ public class P124_RegularExpressionsMatching {
      * 这里考虑的转义字符
      *
      * 每一个循环来进行判断。需要注意的是 需要有弹性的可能(之前已经匹配到了，但是没有往后走)
+     * 迭代的方法的思想，看起来没有递归的清晰!!!!
      */
     public static boolean match(String target, String match) {
         if (target == null || match == null) {
