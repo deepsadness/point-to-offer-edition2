@@ -40,8 +40,8 @@ public class TreeNode {
     public String toString() {
         return "TreeNode{" +
                 "value=" + value +
-                ", left=" + left +
-                ", right=" + right +
+//                ", left=" + left +
+//                ", right=" + right +
                 '}';
     }
 
