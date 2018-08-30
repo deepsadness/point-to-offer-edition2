@@ -18,9 +18,22 @@ public class ListNode {
         return listNode;
     }
 
+    public static ListNode just(ListNode old) {
+        ListNode listNode = new ListNode();
+        listNode.value = old.value;
+        return listNode;
+    }
+
     public ListNode next(int value) {
         ListNode listNode = new ListNode();
         listNode.value = value;
+        this.next = listNode;
+        return listNode;
+    }
+
+    public ListNode next(ListNode old) {
+        ListNode listNode = new ListNode();
+        listNode.value = old.value;
         this.next = listNode;
         return listNode;
     }
