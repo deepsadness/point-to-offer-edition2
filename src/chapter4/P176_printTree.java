@@ -231,4 +231,65 @@ public class P176_printTree {
         return stringBuilder.toString();
 
     }
+
+    //层次打印
+    public static String printInSpecial0(TreeNode root) {
+        if (root == null) {
+            return "";
+        }
+        Stack<TreeNode> stackLeft = new Stack<>();
+        Stack<TreeNode> stackRight = new Stack<>();
+        StringBuilder stringBuilder = new StringBuilder();
+        stackLeft.push(root);
+        while (!stackLeft.isEmpty() || !stackRight.isEmpty()) {
+            while (!stackLeft.isEmpty()) {
+                //因为这个size是外部决定的，所以可以这样
+                int size = stackLeft.size();
+                for (int i = size; i > 0; i--) {
+                    TreeNode temp = stackLeft.pop();
+                    stringBuilder.append(temp.value);
+                    if (i != 1) {
+                        stringBuilder.append(",");
+                    }
+                    TreeNode popLeft = temp.left;
+                    TreeNode popRight = temp.right;
+                    if (popLeft != null) {
+                        stackRight.push(popLeft);
+                    }
+                    if (popRight != null) {
+                        stackRight.push(popRight);
+                    }
+                }
+            }
+            if (!stackRight.isEmpty()) {
+                stringBuilder.append("\n");
+            }
+
+            while (!stackRight.isEmpty()) {
+                //因为这个size是外部决定的，所以可以这样
+                int size = stackRight.size();
+                for (int i = size; i > 0; i--) {
+                    TreeNode temp = stackRight.pop();
+                    stringBuilder.append(temp.value);
+                    if (i != 1) {
+                        stringBuilder.append(",");
+                    }
+                    TreeNode popLeft = temp.left;
+                    TreeNode popRight = temp.right;
+                    if (popRight != null) {
+                        stackLeft.push(popRight);
+                    }
+                    if (popLeft != null) {
+                        stackLeft.push(popLeft);
+                    }
+
+                }
+            }
+            if (!stackLeft.isEmpty()) {
+                stringBuilder.append("\n");
+            }
+        }
+        return stringBuilder.toString();
+
+    }
 }
