@@ -89,7 +89,7 @@ public class P176_printTree {
     }
 
     //之字
-    public static String printInSpeical(TreeNode root) {
+    public static String printInSpecial(TreeNode root) {
         if (root == null) {
             return "";
         }

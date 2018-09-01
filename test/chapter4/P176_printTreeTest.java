@@ -101,7 +101,7 @@ public class P176_printTreeTest {
         String result = "8\n" +
                 "10,6\n" +
                 "5,7,9,11";
-        String s = P176_printTree.printInSpeical(root);
+        String s = P176_printTree.printInSpecial(root);
         Assert.assertEquals(result, s);
     }
 
@@ -119,7 +119,7 @@ public class P176_printTreeTest {
         String result = "8\n" +
                 "10,6\n" +
                 "7,9";
-        String s = P176_printTree.printInSpeical(root);
+        String s = P176_printTree.printInSpecial(root);
         Assert.assertEquals(result, s);
     }
 
