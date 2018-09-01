@@ -24,6 +24,7 @@ public class P182_FindPath {
                 pathToNext(node.left, value, count, result, stringBuilder);
             }
         } else {
+
             //如果相等，就直接打印了。
             return result + "]";
         }
@@ -41,8 +42,11 @@ public class P182_FindPath {
                 pathToNext(node.left, temp, count, result, stringBuilder);
             }
         } else {
-            //如果相等，就直接打印了。
-            stringBuilder.append(result).append("]").append("\n");
+            //必须是叶子节点才可以！！！
+            if (node.right == null && node.left ==null) {
+                //如果相等，就直接打印了。
+                stringBuilder.append(result).append("]").append("\n");
+            }
         }
     }
 }
