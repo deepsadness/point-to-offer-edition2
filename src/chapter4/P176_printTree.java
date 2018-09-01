@@ -49,6 +49,46 @@ public class P176_printTree {
         return stringBuilder.toString();
     }
 
+
+    //层次打印
+    public static String printInLine(TreeNode root) {
+        if (root == null) {
+            return "";
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        StringBuilder stringBuilder = new StringBuilder();
+        queue.offer(root);
+        TreeNode temp;
+
+        while (!queue.isEmpty()) {
+//            Queue<TreeNode> innerQueue = new LinkedList<>();
+            //因为这个size是外部决定的，所以可以这样
+            int size = queue.size();
+            for (int i = size; i > 0; i--) {
+                temp = queue.poll();
+                stringBuilder.append(temp.value);
+                if (i != 1) {
+                    stringBuilder.append(",");
+                }
+                TreeNode popLeft = temp.left;
+                TreeNode popRight = temp.right;
+                if (popLeft != null) {
+                    queue.offer(popLeft);
+                }
+                if (popRight != null) {
+                    queue.offer(popRight);
+                }
+            }
+
+            if (!queue.isEmpty()) {
+                stringBuilder.append("\n");
+            }
+//            queue = innerQueue;
+        }
+        return stringBuilder.toString();
+
+    }
+
     //层次打印
     public static String printInLineRecursive(TreeNode root) {
         if (root == null) {
@@ -89,7 +129,7 @@ public class P176_printTree {
     }
 
     //之字
-    public static String printInSpecial(TreeNode root) {
+    public static String printInSpecialRecursive(TreeNode root) {
         if (root == null) {
             return "";
         }
@@ -138,5 +178,57 @@ public class P176_printTree {
             stringBuilder.append("\n");
         }
         whileInQueueSpecial(innerStack, stringBuilder, index + 1);
+    }
+
+    //层次打印
+    public static String printInSpecial(TreeNode root) {
+        if (root == null) {
+            return "";
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        StringBuilder stringBuilder = new StringBuilder();
+        stack.push(root);
+        TreeNode temp;
+        int lineIndex = 0;
+        while (!stack.isEmpty()) {
+            lineIndex++;
+            Stack<TreeNode> innerStack = new Stack<>();
+            //因为这个size是外部决定的，所以可以这样
+            int size = stack.size();
+            for (int i = size; i > 0; i--) {
+                temp = stack.pop();
+                stringBuilder.append(temp.value);
+                if (i != 1) {
+                    stringBuilder.append(",");
+                }
+                TreeNode popLeft = temp.left;
+                TreeNode popRight = temp.right;
+                if ((lineIndex & 1) == 0) {//even left right
+                    if (popRight != null) {
+                        innerStack.push(popRight);
+                    }
+                    if (popLeft != null) {
+                        innerStack.push(popLeft);
+                    }
+
+                } else {//even right left
+                    if (popLeft != null) {
+                        innerStack.push(popLeft);
+                    }
+
+                    if (popRight != null) {
+                        innerStack.push(popRight);
+                    }
+
+                }
+
+            }
+            if (!innerStack.isEmpty()) {
+                stringBuilder.append("\n");
+            }
+            stack = innerStack;
+        }
+        return stringBuilder.toString();
+
     }
 }

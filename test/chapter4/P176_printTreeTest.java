@@ -66,7 +66,9 @@ public class P176_printTreeTest {
                 "6,10\n" +
                 "5,7,9,11";
         String s = P176_printTree.printInLineRecursive(root);
+        String s1 = P176_printTree.printInLine(root);
         Assert.assertEquals(result, s);
+        Assert.assertEquals(result, s1);
     }
 
     @Test
@@ -84,7 +86,9 @@ public class P176_printTreeTest {
                 "6,10\n" +
                 "5,7,9";
         String s = P176_printTree.printInLineRecursive(root);
+        String s2 = P176_printTree.printInLine(root);
         Assert.assertEquals(result, s);
+        Assert.assertEquals(result, s2);
     }
 
     @Test
@@ -101,8 +105,10 @@ public class P176_printTreeTest {
         String result = "8\n" +
                 "10,6\n" +
                 "5,7,9,11";
-        String s = P176_printTree.printInSpecial(root);
+        String s = P176_printTree.printInSpecialRecursive(root);
+        String s2 = P176_printTree.printInSpecial(root);
         Assert.assertEquals(result, s);
+        Assert.assertEquals(result, s2);
     }
 
     @Test
@@ -119,8 +125,10 @@ public class P176_printTreeTest {
         String result = "8\n" +
                 "10,6\n" +
                 "7,9";
-        String s = P176_printTree.printInSpecial(root);
+        String s = P176_printTree.printInSpecialRecursive(root);
+        String s2 = P176_printTree.printInSpecial(root);
         Assert.assertEquals(result, s);
+        Assert.assertEquals(result, s2);
     }
 
 }
