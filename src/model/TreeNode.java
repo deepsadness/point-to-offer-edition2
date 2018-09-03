@@ -38,6 +38,25 @@ public class TreeNode {
 
     @Override
     public String toString() {
+//        StringBuilder ret = new StringBuilder();
+//        TreeNode cur = this;
+//        while(cur!=null) {
+//            ret.append(cur.value);
+//            if(cur.right!=null)
+//                ret.append("("+cur.right.value+",");
+//            else{
+//                ret.append("(_,");
+//            }
+//
+//            if(cur.left!=null)
+//                ret.append(""+cur.left.value+")");
+//            else{
+//                ret.append("_)");
+//            }
+//            ret.append('\t');
+//            cur = cur.right;
+//        }
+//        return ret.toString();
         return "TreeNode{" +
                 "value=" + value +
 //                ", left=" + left +
