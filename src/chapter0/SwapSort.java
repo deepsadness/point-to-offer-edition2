@@ -1,5 +1,8 @@
 package chapter0;
 
+/**
+ * 交换排序
+ */
 public class SwapSort {
     /**
      * 冒泡排序
@@ -48,6 +51,7 @@ public class SwapSort {
         if (head >= tail || arr == null || arr.length <= 1) {
             return;
         }
+        //使用中点进行
         int i = head, j = tail, pivot = arr[(head + tail) / 2];
         while (i <= j) {
             while (arr[i] < pivot) {
@@ -57,15 +61,17 @@ public class SwapSort {
                 --j;
             }
             if (i < j) {
+                //如果发生了交换。则两遍对换。并同时缩进
                 int t = arr[i];
                 arr[i] = arr[j];
                 arr[j] = t;
                 ++i;
                 --j;
-            } else if (i == j) {
+            } else if (i == j) {    //没有发生交换，则一边前进
                 ++i;
             }
         }
+        //最后将左右坐标不同的带入就可以了
         qSort(arr, head, j);
         qSort(arr, i, tail);
     }
@@ -88,33 +94,44 @@ public class SwapSort {
             return;
         }
 
-        int mid = arr[end];
+        //将快速排序理解程挖坑
+        //先在开始的地方挖一个坑
+        int base = arr[start];
         int left = start;
-        int right = end - 1;
+        int right = end;
 
         while (left < right) {
-            while (arr[left] < mid && left < right) {
-                left++;
-            }
-            while (arr[right] > mid && right > left) {
+            //从后往前
+            while (arr[right] > base && right > left) {
                 right--;
             }
-            int temp = arr[right];
-            arr[right] = arr[left];
-            arr[left] = temp;
+
+            //将当前的坑用右边的值填上，留下右边的坑
+            if (left < right) {
+                arr[left] = arr[right];
+                //填上后进位
+                left++;
+            }
+
+            //从左往右
+            while (arr[left] < base && left < right) {
+                left++;
+            }
+
+            //填上右边的坑
+            if (left < right) {
+                arr[right] = arr[left];
+                right--;
+            }
         }
 
-        if (arr[left] > arr[right]) {
-            int temp = arr[right];
-            arr[right] = arr[left];
-            arr[left] = temp;
-        } else {
-            left++;
-        }
+        //最后填上，最早挖的坑
+        arr[left] = base;
+
+        //排除掉当前挖坑的区域，分区开始
         quickSortRecursive(arr, start, left - 1);
         quickSortRecursive(arr, left + 1, end);
     }
-
 
     static class Range {
         int start, end;
@@ -132,7 +149,7 @@ public class SwapSort {
      * <p>
      * 当栈中，不存在元素时，就表示完成了。
      */
-    public static void quickSort3(int[] arr) {
+    public static void quickSort4(int[] arr) {
         int lenght = arr.length;
         if (lenght <= 0) {
             return;
@@ -147,29 +164,40 @@ public class SwapSort {
                 continue;
             }
 
-            int mid = arr[range.end];
-            int left = range.start, right = range.end - 1;
+            int mid = arr[range.start];
+            int left = range.start, right = range.end;
             while (left < right) {
-                while (arr[left] < mid && left < right) {
-                    left++;
-                }
+
                 while (arr[right] > mid && right > left) {
                     right--;
                 }
-                int temp = arr[right];
-                arr[right] = arr[left];
-                arr[left] = temp;
+                //将当前的坑用右边的值填上，留下右边的坑
+                if (left < right) {
+                    arr[left] = arr[right];
+                    //填上后进位
+                    left++;
+                }
+
+
+                while (arr[left] < mid && left < right) {
+                    left++;
+                }
+                //将当前的坑用右边的值填上，留下右边的坑
+                if (left < right) {
+                    arr[right] = arr[left];
+                    //填上后进位
+                    right--;
+                }
+
             }
 
-            if (arr[left] > arr[right]) {
-                int temp = arr[right];
-                arr[right] = arr[left];
-                arr[left] = temp;
-            } else {
-                left++;
-            }
-            r[p++] = new Range(range.start, left - 1);
+            arr[left] = mid;
+
             r[p++] = new Range(left + 1, range.end);
+
+            if (left > 0) {
+                r[p++] = new Range(range.start, left - 1);
+            }
         }
     }
 }
