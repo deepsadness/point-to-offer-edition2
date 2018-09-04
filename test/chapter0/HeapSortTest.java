@@ -10,10 +10,10 @@ import java.util.Arrays;
  */
 public class HeapSortTest {
     @Test
-    public void heapSort(){
+    public void heapSort() {
         int[] target = {1, 2, 3, 2, 2, 2, 5, 4, 2};
         int[] targetCopy = {1, 2, 3, 2, 2, 2, 5, 4, 2};
-        SwapSort.bubleSort(target);
+        HeapSort.heapSort(target);
         Arrays.sort(targetCopy);
         Assert.assertTrue(Arrays.equals(target, targetCopy));
     }

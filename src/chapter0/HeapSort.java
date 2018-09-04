@@ -43,6 +43,8 @@ public class HeapSort {
                 head = left;
                 // 同样初始化为做节点
                 left = 2 * head + 1;
+            } else {
+                break;
             }
         }
         arr[head] = tempHead;
