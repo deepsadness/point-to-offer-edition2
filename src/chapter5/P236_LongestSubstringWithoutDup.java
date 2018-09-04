@@ -62,6 +62,9 @@ public class P236_LongestSubstringWithoutDup {
         return longest.length();
     }
 
+    /**
+     * 利用动态规划，不在退回到最前面。而是从不重复的部分，开始
+     */
     public static int getLength2(String str) {
 
         if (str == null || str.length() == 0) {
