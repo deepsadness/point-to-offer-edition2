@@ -62,7 +62,7 @@ public class P282_ContinuousSequenceWithSum {
             System.out.println(perD + "," + (perD + 1) + ",");
         } else if ((divideCount & 1) == 1) {
             int half = divideCount / 2;
-            StringBuilder stringBuilder = new StringBuilder(divideCount);
+            StringBuilder stringBuilder = new StringBuilder();
             for (int i = -half; i <= half; i++) {
                 stringBuilder.append(perD + i).append(",");
             }
@@ -76,7 +76,7 @@ public class P282_ContinuousSequenceWithSum {
             } else {
                 start++;
             }
-            StringBuilder stringBuilder = new StringBuilder(divideCount);
+            StringBuilder stringBuilder = new StringBuilder();
             for (int i = start; i <= end; i++) {
                 stringBuilder.append(perD + i).append(",");
             }
