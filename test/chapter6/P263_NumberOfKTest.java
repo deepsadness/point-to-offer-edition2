@@ -28,4 +28,19 @@ public class P263_NumberOfKTest {
         Assert.assertEquals(1, P263_NumberOfK.findNumberTimes3(arr, 4));
         Assert.assertEquals(0, P263_NumberOfK.findNumberTimes3(arr, 6));
     }
+
+    @Test
+    public void findNumberTimes75() {
+        int[] arr = {7,7,7,7,7};
+//        Assert.assertEquals(5, P263_NumberOfK.findNumberTimes(arr, 7));
+        Assert.assertEquals(5, P263_NumberOfK.findNumberTimes3(arr, 7));
+    }
+
+    @Test
+    public void findNumberTimes76() {
+        int[] arr = {7,7,7,7,7,7};
+//        Assert.assertEquals(6, P263_NumberOfK.findNumberTimes(arr, 7));
+        Assert.assertEquals(6, P263_NumberOfK.findNumberTimes3(arr, 7));
+
+    }
 }

@@ -104,7 +104,9 @@ public class P263_NumberOfK {
 
         int targetFirstIndex = -1;
         while (low <= high && low >= 0) {
-            int mid = (low + high) >> 1;
+            //使用这种方式比较好。迭代次数较少。在长度为偶数时！！！
+            int mid = low + (high - low) >> 1;
+//            int mid = (high + low) >> 1;
             if (arr[mid] == number) {
                 if (mid == low || (arr[mid - 1] != number)) { //表示自己是第一个了
                     targetFirstIndex = mid;
