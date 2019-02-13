@@ -19,7 +19,7 @@ public class HeapSort {
             int temp = arr[0];
             arr[0] = arr[i];
             arr[i] = temp;
-            maxifyHeap(arr, 0, i - 1);
+            maxifyHeap(arr, 0, i);
         }
     }
 
