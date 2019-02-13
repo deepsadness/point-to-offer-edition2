@@ -2,6 +2,15 @@ package chapter0;
 
 /**
  * 堆排序
+ * <p>
+ * 将无序的数组调整成堆。
+ * 然后不断的调整子序列。
+ * <p>
+ * 使用数组来表示 堆
+ * <p>
+ * 时间复杂度也是  O(nlog2n)
+ * <p>
+ * 适合数据比较多的时候来使用。
  */
 public class HeapSort {
     public static void heapSort(int[] arr) {
@@ -10,11 +19,23 @@ public class HeapSort {
         }
         //初始化堆
         int length = arr.length;
+        //1.简单的建堆。就是简单的将数组，构建成一个完全二叉树
+        //将数组当作是一个树
+        // [2, 53, 3, 15, 15, 10, 29, 18]
+        // 等价于
+        //     2
+        //  53    3
+        //15  15  10 29
+        //18
+        //因为是从0开始，所以需要-1。
+        //high表示最高的层数 high = length / 2 - 1
+        //从顶层往下
         for (int i = length / 2 - 1; i >= 0; i--) {
             maxifyHeap(arr, i, length);
         }
 
         //排序
+        // 2.取出最大值，继续分别调整完全二叉树的子树
         for (int i = length - 1; i > 0; i--) {
             int temp = arr[0];
             arr[0] = arr[i];

@@ -82,20 +82,23 @@ public class SwapSort {
     }
 
     /**
-     * 递归的方式来进行快速排序
-     * <p>
-     * 快速排序的过程就是从两边两个指针，不断缩进。
-     * 当不满足大小条件时，就交换当前的两个指针的位置，然后继续
-     * <p>
-     * 通过这样的方式，找到当前大小的位置。通过不断划分子序列，使子序列有序，来完成排序。
+     * 用一个基准轴。通过左右比较，将小的放在左边，大的放在右边。这种思想。将问题不断的切割
+     *
+     * 时间复杂度是 O(log2n)
+     *
+     * 通常是使用递归的方式。递归的方式，就是使用了堆栈的方式来进行运行程序，
+     * 如果想要转换成遍历的方式。
+     * 可以使用stack或者数组来管理就可以了。
+     *
+     * 快排的方式是使用 数组。因为他是先计算再入栈。先进先出。
+     * 如果是采用 先入栈，后计算的话。 就会变成先进后出。
      */
     public static void quickSortRecursive(int[] arr, int start, int end) {
         if (start > end) {
             return;
         }
-
-        //将快速排序理解程挖坑
-        //先在开始的地方挖一个坑
+        //step 1 找到基准
+        //将当前的第一个点当作是基准点
         int base = arr[start];
         int left = start;
         int right = end;
@@ -106,7 +109,7 @@ public class SwapSort {
                 right--;
             }
 
-            //将当前的坑用右边的值填上，留下右边的坑
+            //和左边交换后，将左边的index右移动，继续
             if (left < right) {
                 arr[left] = arr[right];
                 //填上后进位
@@ -118,17 +121,17 @@ public class SwapSort {
                 left++;
             }
 
-            //填上右边的坑
+            //和右边交换，将右边的index左移动，继续
             if (left < right) {
                 arr[right] = arr[left];
                 right--;
             }
         }
 
-        //最后填上，最早挖的坑
+        //找到最后的位置了，将我们的基准安置到自己的位置上！
         arr[left] = base;
 
-        //排除掉当前挖坑的区域，分区开始
+        //step2 重新按照基准。分割两个序列。重复这个步骤
         quickSortRecursive(arr, start, left - 1);
         quickSortRecursive(arr, left + 1, end);
     }
